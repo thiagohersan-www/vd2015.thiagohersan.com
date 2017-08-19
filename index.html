@@ -54,7 +54,7 @@
         $(".menu-right-col").delay(5000).animate({opacity:'1'},2500);
     };
     function resizeImgDiv(){
-        $(".img-top").height($(window).height()-$(".menu-left-col").height());
+        $(".img-top").height($(window).height() - $(".img-top").offset().top);
     };
     function onImgClick(){
         $(window).trigger('resize');
@@ -74,9 +74,9 @@
 
 <body>
 <div class="menu-top">
-    <div class="menu-left-col"><img class="menu-image" onclick="setCurrentImg(this)" src="imgs/menu_aGazebro.png"></div>
-    <div class="menu-center-col"><img class="menu-image" onclick="setCurrentImg(this)" src="imgs/menu_aTamanduela.png"></div>
-    <div class="menu-right-col"><img class="menu-image" onclick="setCurrentImg(this)" src="imgs/menu_aSuezal.png"></div>
+    <div class="menu-left-col menu-col"><img class="menu-image" onclick="setCurrentImg(this)" src="imgs/menu_aGazebro.png"></div>
+    <div class="menu-center-col menu-col"><img class="menu-image" onclick="setCurrentImg(this)" src="imgs/menu_aTamanduela.png"></div>
+    <div class="menu-right-col menu-col"><img class="menu-image" onclick="setCurrentImg(this)" src="imgs/menu_aSuezal.png"></div>
 </div>
 
 <div class="img-top">
