@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+  <title>Fully Optimized</title>
+  <link rel="stylesheet" href="css.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+  <script>
+    function preload(arrayOfImages) {
+        $(arrayOfImages).each(function(){
+            (new Image()).src = this;
+        });
+    };
+
+    var cnt;
+    var currentImg;
+    var imgBank;
+
+    function setup(){
+        cnt = 0;
+        currentImg = "aGazebro";
+        imgBank = {};
+        imgBank["aGazebro"] = [0,1,2,3,4,5,6,7,8,9,10,9,10,9,10,9,10,9,8,7,6,5,4,3,2,1];
+        imgBank["aSuezal"] = [0,1,0,1,2,3,4,3,4,3,4,3,2,1];
+        imgBank["aTamanduela"] = [0,1,2,3,4,5,4,5,6,5,6,7,6,7,6,7,6,5,4,3,2,1];
+
+        preload([
+            'imgs/aTamanduela0.png',
+            'imgs/aTamanduela1.png',
+            'imgs/aTamanduela2.png',
+            'imgs/aTamanduela3.png',
+            'imgs/aTamanduela4.png',
+            'imgs/aTamanduela5.png',
+            'imgs/aTamanduela6.png',
+            'imgs/aTamanduela7.png',
+            'imgs/aSuezal0.png',
+            'imgs/aSuezal1.png',
+            'imgs/aSuezal2.png',
+            'imgs/aSuezal3.png',
+            'imgs/aSuezal4.png',
+            'imgs/aGazebro0.png',
+            'imgs/aGazebro1.png',
+            'imgs/aGazebro2.png',
+            'imgs/aGazebro3.png',
+            'imgs/aGazebro4.png',
+            'imgs/aGazebro5.png',
+            'imgs/aGazebro6.png',
+            'imgs/aGazebro7.png',
+            'imgs/aGazebro8.png',
+            'imgs/aGazebro9.png',
+            'imgs/aGazebro10.png']);
+        resizeImgDiv();
+        $(".menu-left-col").delay(100).animate({opacity:'1'},2500);
+        $(".menu-center-col").delay(2500).animate({opacity:'1'},2500);
+        $(".menu-right-col").delay(5000).animate({opacity:'1'},2500);
+    };
+    function resizeImgDiv(){
+        $(".img-top").height($(window).height()-$(".menu-left-col").height());
+    };
+    function onImgClick(){
+        $(window).trigger('resize');
+        cnt = cnt+1;
+        $(".current-img").attr("src","imgs/"+currentImg+imgBank[currentImg][(cnt%imgBank[currentImg].length)]+".png");
+    };
+    function setCurrentImg(ci){
+        $(window).trigger('resize');
+        currentImg = ci.getAttribute("src").replace("imgs/menu_","").replace(".png","");
+        cnt = -1;
+        onImgClick();
+    }
+    $(document).ready(setup);
+    $(window).resize(resizeImgDiv);
+</script>
+</head>
+
+<body>
+<div class="menu-top">
+    <div class="menu-left-col"><img class="menu-image" onclick="setCurrentImg(this)" src="imgs/menu_aGazebro.png"></div>
+    <div class="menu-center-col"><img class="menu-image" onclick="setCurrentImg(this)" src="imgs/menu_aTamanduela.png"></div>
+    <div class="menu-right-col"><img class="menu-image" onclick="setCurrentImg(this)" src="imgs/menu_aSuezal.png"></div>
+</div>
+
+<div class="img-top">
+    <img class="current-img" onclick="onImgClick()" src="">
+</div>
+
+</body>
